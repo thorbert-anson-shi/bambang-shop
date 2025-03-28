@@ -61,13 +61,13 @@ You can install Postman via this website: https://www.postman.com/downloads/
   - [✅] Commit: `Implement add function in Subscriber repository.`
   - [✅] Commit: `Implement list_all function in Subscriber repository.`
   - [✅] Commit: `Implement delete function in Subscriber repository.`
-  - [ ] Write answers of your learning module's "Reflection Publisher-1" questions in this README.
+  - [✅] Write answers of your learning module's "Reflection Publisher-1" questions in this README.
 - **STAGE 2: Implement services and controllers**
-  - [ ] Commit: `Create Notification service struct skeleton.`
-  - [ ] Commit: `Implement subscribe function in Notification service.`
-  - [ ] Commit: `Implement subscribe function in Notification controller.`
-  - [ ] Commit: `Implement unsubscribe function in Notification service.`
-  - [ ] Commit: `Implement unsubscribe function in Notification controller.`
+  - [✅] Commit: `Create Notification service struct skeleton.`
+  - [✅] Commit: `Implement subscribe function in Notification service.`
+  - [✅] Commit: `Implement subscribe function in Notification controller.`
+  - [✅] Commit: `Implement unsubscribe function in Notification service.`
+  - [✅] Commit: `Implement unsubscribe function in Notification controller.`
   - [ ] Write answers of your learning module's "Reflection Publisher-2" questions in this README.
 - **STAGE 3: Implement notification mechanism**
   - [ ] Commit: `Implement update method in Subscriber model to send notification HTTP requests.`
@@ -93,5 +93,21 @@ This is the place for you to write reflections:
    In conclusion, the singleton pattern doesn't solve the intrinsic issue of using a `HashMap` concurrently. The issue is only solved properly by adding concurrency control, such as a mutex lock to the `HashMap`, which is essentially what the `DashMap` does.
 
 #### Reflection Publisher-2
+
+1. The reason why the model is separated into "service" and "repository" is done because a traditional Model in the MVC architecture violates the Single Responsibility Principle (SRP) by handling both business logic and data management.
+
+   After the refactoring, the service component handles strictly business logic, while the repository handles strictly data storage and management.
+
+   This allows for loose coupling between the business logic and the data storage logic, which in turn allows for future development
+
+   This also enforces the Open Closed Principle by preventing the developer from making changes to the business logic and data management logic at the same time, thus minimizing the risk of feature regression as new updates roll in.
+
+2. I could imagine the logic to be more compact and optimized, as all the code can now communicate between one another more granularly. However, it could be harder to enforce separation of concerns, causing the data management logic to mix with business logic.
+
+   Firstly, this would make unit testing more difficult, as it isn't clear which "unit" we're testing on. I would also imagine that changes to the underlying data structure would require sweeping changes to the way data is accessed across the whole model.
+
+3. I have used Postman to test API endpoints in order to test them more extensively than a browser can. Right now, it can be used to make requests to the application in a repeatable and user friendly way. For example, instead of coming up with HTTP requests from scratch, Postman can be used to make POST and PUT requests to send to the application.
+
+   In the future, I plan to use Postman to share API testing endpoints with colleagues in order to make sure we're all on the same page when it comes to the API structure and payload to provide.
 
 #### Reflection Publisher-3
