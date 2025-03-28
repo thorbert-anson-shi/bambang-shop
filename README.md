@@ -68,13 +68,13 @@ You can install Postman via this website: https://www.postman.com/downloads/
   - [✅] Commit: `Implement subscribe function in Notification controller.`
   - [✅] Commit: `Implement unsubscribe function in Notification service.`
   - [✅] Commit: `Implement unsubscribe function in Notification controller.`
-  - [ ] Write answers of your learning module's "Reflection Publisher-2" questions in this README.
+  - [✅] Write answers of your learning module's "Reflection Publisher-2" questions in this README.
 - **STAGE 3: Implement notification mechanism**
-  - [ ] Commit: `Implement update method in Subscriber model to send notification HTTP requests.`
-  - [ ] Commit: `Implement notify function in Notification service to notify each Subscriber.`
-  - [ ] Commit: `Implement publish function in Program service and Program controller.`
-  - [ ] Commit: `Edit Product service methods to call notify after create/delete.`
-  - [ ] Write answers of your learning module's "Reflection Publisher-3" questions in this README.
+  - [✅] Commit: `Implement update method in Subscriber model to send notification HTTP requests.`
+  - [✅] Commit: `Implement notify function in Notification service to notify each Subscriber.`
+  - [✅] Commit: `Implement publish function in Program service and Program controller.`
+  - [✅] Commit: `Edit Product service methods to call notify after create/delete.`
+  - [✅] Write answers of your learning module's "Reflection Publisher-3" questions in this README.
 
 ## Your Reflections
 
@@ -111,3 +111,11 @@ This is the place for you to write reflections:
    In the future, I plan to use Postman to share API testing endpoints with colleagues in order to make sure we're all on the same page when it comes to the API structure and payload to provide.
 
 #### Reflection Publisher-3
+
+1. The variation of the Observer pattern used here is the push model. This can be seen when a product is created, and the notification service proceeds to spawn a thread to run the subscriber's `update()` function. This requires no "pulling" from the subscriber's side for new data from the publisher.
+
+2. The main advantage of the pull model will be less spiky and intensive use of system resources. Say for example, a product had millions of subscribers, then using the push model as it was implemented in this module would require the notification service to call each subscriber's `update()` function that many millions of times. This may prove to be time and resource consuming. Even if the code itself is asynchronous, if the amount of work to push out notifications overloads the system, it essentially blocks the server from doing anything while processing pushing all the notifications out.
+
+   > Note: I don't think that the explanation of the Observer Pull model in the module is accurate. If the Pull model is simply making requests to the Publisher for updates, I don't think that fulfills the requirement of the Observer pattern, where the publisher is the one broadcasting any changes to the observable object.
+
+3. The notification will take far longer to push out, as each call of `update()` will have to wait for the notification HTTP request to either succeed or fail before being able to notify the next subscriber. This also means that if an HTTP request fails spectacularly and breaks the main thread, the whole notification system may go down with it.

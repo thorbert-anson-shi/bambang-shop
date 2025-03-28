@@ -1,9 +1,9 @@
 use rocket::http::Status;
 use rocket::serde::json::Json;
 
+use crate::model::product::Product;
 use crate::repository::product::ProductRepository;
 use crate::service::notification::NotificationService;
-use crate::{controller::product, model::product::Product};
 use bambangshop::{compose_error_response, Result};
 
 pub struct ProductService;
