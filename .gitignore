@@ -138,4 +138,7 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
+# Postman collections
+postman_collections.json
+
 # End of https://www.toptal.com/developers/gitignore/api/rust,linux,windows,database,rust-analyzer,visualstudiocode,venv,dotenv,virtualenv,direnv,jenv,git
